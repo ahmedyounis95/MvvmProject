@@ -1,10 +1,11 @@
 package hcww.mvvm.ayounis.com.mvvmproject.ui.base;
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ObservableBoolean;
+
 
 import java.lang.ref.WeakReference;
 
+import androidx.databinding.ObservableBoolean;
+import androidx.lifecycle.ViewModel;
 import hcww.mvvm.ayounis.com.mvvmproject.data.DataManager;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.rx.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;

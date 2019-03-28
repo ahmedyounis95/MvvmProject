@@ -5,25 +5,21 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import dagger.android.AndroidInjection;
-import hcww.mvvm.ayounis.com.mvvmproject.MainActivity;
-import hcww.mvvm.ayounis.com.mvvmproject.ui.base.BaseFragment;
-import hcww.mvvm.ayounis.com.mvvmproject.ui.base.BaseViewModel;
-import hcww.mvvm.ayounis.com.mvvmproject.ui.splash.SplashActivity;
+import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.FeedActivity;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.CommonUtils;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.NetworkUtils;
 
@@ -62,6 +58,11 @@ implements BaseFragment.Callback{
         super.onCreate(savedInstanceState);
         performDataBinding();
     }
+
+    public T getViewDataBinding() {
+        return mViewDataBinding;
+    }
+
     @TargetApi(Build.VERSION_CODES.M)
     public boolean hasPermission(String permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
@@ -89,7 +90,7 @@ implements BaseFragment.Callback{
     }
 
     public void openActivityOnTokenExpire() {
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, FeedActivity.class));
         finish();
     }
 

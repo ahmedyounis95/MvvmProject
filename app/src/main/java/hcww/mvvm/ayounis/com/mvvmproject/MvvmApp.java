@@ -5,8 +5,6 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjector;
-import dagger.android.DaggerApplication;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import hcww.mvvm.ayounis.com.mvvmproject.di.component.AppComponent;
@@ -16,8 +14,15 @@ import hcww.mvvm.ayounis.com.mvvmproject.di.module.NetModule;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.AppConstants;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.AppLogger;
 
-public class MvvmApp extends Application{
+public class MvvmApp extends Application implements HasActivityInjector{
 
+    @Inject
+    DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
+
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return activityDispatchingAndroidInjector;
+    }
     private AppComponent mAppComponent;
 
     @Override
@@ -38,5 +43,6 @@ public class MvvmApp extends Application{
     public AppComponent getComponent() {
         return mAppComponent;
     }
+
 
 }

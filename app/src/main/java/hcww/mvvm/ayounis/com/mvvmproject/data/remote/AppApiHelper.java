@@ -22,7 +22,6 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Call<HomeData> getHomeData(String apiKey, String query, String groupBy, int page, String source, String language) {
-        Context mContext = null;
         Retrofit retrofit = ((MvvmApp)mContext).getComponent().getRetrofit();
         return retrofit.create(ApiHelper.class).getHomeData(apiKey,query,groupBy,page,source,language);
     }

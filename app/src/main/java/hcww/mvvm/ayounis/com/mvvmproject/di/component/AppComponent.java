@@ -1,11 +1,9 @@
 package hcww.mvvm.ayounis.com.mvvmproject.di.component;
 
-import android.app.Application;
 import android.content.Context;
 
 import javax.inject.Singleton;
 
-import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import hcww.mvvm.ayounis.com.mvvmproject.MvvmApp;

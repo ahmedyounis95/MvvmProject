@@ -3,9 +3,9 @@ package hcww.mvvm.ayounis.com.mvvmproject.ui.splash;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
+import androidx.annotation.Nullable;
 
 import hcww.mvvm.ayounis.com.mvvmproject.BR;
 import hcww.mvvm.ayounis.com.mvvmproject.R;
