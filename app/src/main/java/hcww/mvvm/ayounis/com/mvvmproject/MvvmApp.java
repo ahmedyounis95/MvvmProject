@@ -35,6 +35,7 @@ public class MvvmApp extends Application implements HasActivityInjector{
                 .build();
         mAppComponent.inject(this);
 
+
         AppLogger.init();
 
 

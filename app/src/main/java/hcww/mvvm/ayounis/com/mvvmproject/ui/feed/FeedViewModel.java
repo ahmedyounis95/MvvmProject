@@ -6,7 +6,7 @@ import hcww.mvvm.ayounis.com.mvvmproject.ui.base.BaseViewModel;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.rx.SchedulerProvider;
 
 /**
- * Created by Jyoti on 29/07/17.
+ * Created by Ahmed Younis on 18/03/19.
  */
 
 public class FeedViewModel extends BaseViewModel {

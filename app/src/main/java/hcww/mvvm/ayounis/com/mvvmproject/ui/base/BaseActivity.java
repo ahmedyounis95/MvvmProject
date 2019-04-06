@@ -115,8 +115,6 @@ implements BaseFragment.Callback{
         this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
-        List<Integer> arr;
-        arr = new ArrayList<>();
 
     }
 }

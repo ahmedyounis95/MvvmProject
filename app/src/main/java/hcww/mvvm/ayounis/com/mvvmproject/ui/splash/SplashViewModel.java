@@ -15,6 +15,5 @@ public class SplashViewModel extends BaseViewModel<SplashNavigator> {
 
     public void decideNextActivity(){
         getNavigator().openMainActivity();
-        getDataManager().getHomeData("1","1","1",1,"1","1" );
     }
 }

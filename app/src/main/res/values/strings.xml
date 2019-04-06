@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">MvvmProject</string>
     <string name="title">Title</string>
+    <string name="empty_screen">No news available</string>
+    <string name="please_retry">Please try again</string>
+    <string name="retry">Retry</string>
+    <string name="news">News</string>
+    <string name="favorites">Favorites</string>
 </resources>

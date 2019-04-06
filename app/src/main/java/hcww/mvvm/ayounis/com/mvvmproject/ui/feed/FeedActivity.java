@@ -1,30 +1,18 @@
-/*
- *  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://mindorks.com/license/apache-v2
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- */
-
 package hcww.mvvm.ayounis.com.mvvmproject.ui.feed;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
+
+import javax.inject.Inject;
+
 import androidx.core.app.NavUtils;
 import androidx.core.app.TaskStackBuilder;
-import android.view.MenuItem;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -33,16 +21,12 @@ import hcww.mvvm.ayounis.com.mvvmproject.R;
 import hcww.mvvm.ayounis.com.mvvmproject.ViewModelProviderFactory;
 import hcww.mvvm.ayounis.com.mvvmproject.databinding.ActivityFeedBinding;
 import hcww.mvvm.ayounis.com.mvvmproject.ui.base.BaseActivity;
-import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.FeedPagerAdapter;
-import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.FeedViewModel;
-
-import javax.inject.Inject;
 
 /**
- * Created by amitshekhar on 10/07/17.
+ * Created by Ahmed Younis on 18/03/19.
  */
 
-public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewModel>  {
+public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewModel>  implements HasSupportFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -98,10 +82,10 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
         return super.onOptionsItemSelected(item);
     }
 
-    /*@Override
+    @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +105,8 @@ public class FeedActivity extends BaseActivity<ActivityFeedBinding, FeedViewMode
 
         mActivityFeedBinding.feedViewPager.setAdapter(mPagerAdapter);
 
-/*
-        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.blog)));
-        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.open_source)));
-*/
+        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.news)));
+        mActivityFeedBinding.tabLayout.addTab(mActivityFeedBinding.tabLayout.newTab().setText(getString(R.string.favorites)));
 
         mActivityFeedBinding.feedViewPager.setOffscreenPageLimit(mActivityFeedBinding.tabLayout.getTabCount());
 

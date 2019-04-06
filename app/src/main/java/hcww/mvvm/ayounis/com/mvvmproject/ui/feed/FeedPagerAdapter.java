@@ -4,6 +4,7 @@ package hcww.mvvm.ayounis.com.mvvmproject.ui.feed;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news.NewsFragment;
 
 /**
  * Created by Ahmed Younis on 18/03/19.
@@ -31,9 +32,9 @@ public class FeedPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-//                return BlogFragment.newInstance();
+                return NewsFragment.newInstance();
             case 1:
-//                return OpenSourceFragment.newInstance();
+                return NewsFragment.newInstance();
             default:
                 return null;
         }
