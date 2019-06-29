@@ -18,7 +18,7 @@ import io.reactivex.Single;
 
 public class NewsViewModel extends BaseViewModel<NewsNavigator> {
 
-    private final MutableLiveData<List<NewsItemViewModel>> newsItemsLiveData;
+    private final MutableLiveData<List<Articles>> newsItemsLiveData;
 
     public NewsViewModel(DataManager dataManager,
                          SchedulerProvider schedulerProvider) {
@@ -31,27 +31,19 @@ public class NewsViewModel extends BaseViewModel<NewsNavigator> {
         setIsLoading(true);
         getCompositeDisposable().add(getDataManager()
                 .getHomeData("dcf37b3045e542df970986c1114eb3ea", "news", "day", 1, "USA Today", "en")
-                .map(homeData -> homeData.getArticles())
-                .flatMap(this::getViewModelList)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(newsItemViewModels -> {
-                    newsItemsLiveData.setValue(newsItemViewModels);
+                .subscribe(homeData -> {
+                    if (homeData != null && homeData.getArticles()!= null) {
+                        newsItemsLiveData.setValue(homeData.getArticles());
+                    }
                     setIsLoading(false);
                 }, throwable -> {
                     setIsLoading(false);
                     getNavigator().handleError(throwable);
                 }));
     }
-
-    public LiveData<List<NewsItemViewModel>> getNewsItemsLiveData() {
+    public LiveData<List<Articles>> getNewsItemsLiveData() {
         return newsItemsLiveData;
-    }
-
-    private Single<List<NewsItemViewModel>> getViewModelList(List<Articles> repoList) {
-        return Observable.fromIterable(repoList)
-                .map(repo -> new NewsItemViewModel(
-                        repo.getUrlToImage(), repo.getDescription(),
-                        repo.getTitle(),repo.getContent())).toList();
     }
 }

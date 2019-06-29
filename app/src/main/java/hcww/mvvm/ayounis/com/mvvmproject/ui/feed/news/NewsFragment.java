@@ -76,8 +76,8 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding,NewsViewModel
     }
     private void setUp() {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mFragmentNewsBinding.openSourceRecyclerView.setLayoutManager(mLayoutManager);
-        mFragmentNewsBinding.openSourceRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mFragmentNewsBinding.openSourceRecyclerView.setAdapter(mNewsAdapter);
+        mFragmentNewsBinding.newsRecyclerView.setLayoutManager(mLayoutManager);
+        mFragmentNewsBinding.newsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mFragmentNewsBinding.newsRecyclerView.setAdapter(mNewsAdapter);
     }
 }

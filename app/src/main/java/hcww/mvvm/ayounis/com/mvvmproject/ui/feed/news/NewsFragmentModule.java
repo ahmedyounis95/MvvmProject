@@ -1,6 +1,9 @@
 package hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.ArrayList;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,7 +20,7 @@ public class NewsFragmentModule {
 
     @Provides
     NewsAdapter provideNewsAdapter() {
-        return new NewsAdapter();
+        return new NewsAdapter(new ArrayList<>());
     }
 
 }

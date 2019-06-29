@@ -9,6 +9,8 @@ import java.util.List;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import hcww.mvvm.ayounis.com.mvvmproject.data.model.Articles;
 import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news.NewsAdapter;
 import hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news.NewsItemViewModel;
 
@@ -21,7 +23,7 @@ public final class BindingUtils {
     }
 
     @BindingAdapter({"adapter"})
-    public static void addNewsItems(RecyclerView recyclerView, List<NewsItemViewModel> news) {
+    public static void addNewsItems(RecyclerView recyclerView, List<Articles> news) {
         NewsAdapter adapter = (NewsAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();

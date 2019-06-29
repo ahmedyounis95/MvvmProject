@@ -15,6 +15,8 @@ import retrofit2.Retrofit;
 public class AppApiHelper implements ApiHelper {
 
     private Context mContext;
+    private Retrofit retrofit;
+
     @Inject
     public AppApiHelper(@ApplicationContext Context mContext) {
         this.mContext = mContext;
@@ -22,7 +24,7 @@ public class AppApiHelper implements ApiHelper {
 
     @Override
     public Single<HomeData> getHomeData(String apiKey, String query, String groupBy, int page, String source, String language) {
-        Retrofit retrofit = ((MvvmApp)mContext).getComponent().getRetrofit();
+        retrofit = ((MvvmApp)mContext).getComponent().getRetrofit();
         return retrofit.create(ApiHelper.class).getHomeData(apiKey,query,groupBy,page,source,language);
     }
 }

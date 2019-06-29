@@ -6,9 +6,9 @@ package hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news;
 
 public class NewsEmptyItemViewModel {
 
-    private final OpenSourceEmptyItemViewModelListener mListener;
+    private final NewsEmptyItemViewModelListener mListener;
 
-    public NewsEmptyItemViewModel(OpenSourceEmptyItemViewModelListener listener) {
+    public NewsEmptyItemViewModel(NewsEmptyItemViewModelListener listener) {
         this.mListener = listener;
     }
 
@@ -16,7 +16,7 @@ public class NewsEmptyItemViewModel {
         mListener.onRetryClick();
     }
 
-    public interface OpenSourceEmptyItemViewModelListener {
+    public interface NewsEmptyItemViewModelListener {
 
         void onRetryClick();
     }

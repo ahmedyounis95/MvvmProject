@@ -3,14 +3,14 @@ package hcww.mvvm.ayounis.com.mvvmproject.ui.feed.news;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import hcww.mvvm.ayounis.com.mvvmproject.data.model.Articles;
 import hcww.mvvm.ayounis.com.mvvmproject.databinding.ItemNewsEmptyViewBinding;
 import hcww.mvvm.ayounis.com.mvvmproject.databinding.ItemNewsViewBinding;
 import hcww.mvvm.ayounis.com.mvvmproject.ui.base.BaseViewHolder;
@@ -26,12 +26,12 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public static final int VIEW_TYPE_NORMAL = 1;
 
-    private final List<NewsItemViewModel> mNewsResponseList;
+    private final List<Articles> mNewsResponseList;
 
     private NewsAdapterListener mListener;
 
-    public NewsAdapter() {
-        this.mNewsResponseList = new ArrayList<>();
+    public NewsAdapter(List<Articles> newsResponseList) {
+        this.mNewsResponseList = newsResponseList;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addItems(List<NewsItemViewModel> repoList) {
+    public void addItems(List<Articles> repoList) {
         mNewsResponseList.addAll(repoList);
         notifyDataSetChanged();
     }
@@ -90,7 +90,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         void onRetryClick();
     }
 
-    public class EmptyViewHolder extends BaseViewHolder implements NewsEmptyItemViewModel.OpenSourceEmptyItemViewModelListener {
+    public class EmptyViewHolder extends BaseViewHolder implements NewsEmptyItemViewModel.NewsEmptyItemViewModelListener {
 
         private final ItemNewsEmptyViewBinding mBinding;
 
@@ -111,9 +111,11 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public class OpenSourceViewHolder extends BaseViewHolder implements View.OnClickListener {
+    public class OpenSourceViewHolder extends BaseViewHolder implements NewsItemViewModel.NewsItemViewModelListener {
 
         private final ItemNewsViewBinding mBinding;
+
+        private NewsItemViewModel mNewsItemViewModel;
 
         public OpenSourceViewHolder(ItemNewsViewBinding binding) {
             super(binding.getRoot());
@@ -122,8 +124,9 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final NewsItemViewModel mOpenSourceItemViewModel = mNewsResponseList.get(position);
-            mBinding.setViewModel(mOpenSourceItemViewModel);
+            final Articles mNewsItemViewModel = mNewsResponseList.get(position);
+            this.mNewsItemViewModel = new NewsItemViewModel(mNewsItemViewModel,this);
+            mBinding.setViewModel(this.mNewsItemViewModel);
 
             // Immediate Binding
             // When a variable or observable changes, the binding will be scheduled to change before
@@ -132,14 +135,15 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mBinding.executePendingBindings();
         }
 
+
         @Override
-        public void onClick(View view) {
-            if (mNewsResponseList.get(0).projectUrl.get() != null) {
+        public void onItemClick() {
+            if (mNewsResponseList.get(0).getUrl()!= null) {
                 try {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse(mNewsResponseList.get(0).projectUrl.get()));
+                    intent.setData(Uri.parse(mNewsResponseList.get(0).getUrl()));
                     itemView.getContext().startActivity(intent);
                 } catch (Exception e) {
                     AppLogger.d("url error");
