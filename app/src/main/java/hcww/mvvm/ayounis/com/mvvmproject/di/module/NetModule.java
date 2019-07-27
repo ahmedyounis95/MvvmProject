@@ -9,10 +9,12 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hcww.mvvm.ayounis.com.mvvmproject.utils.AppConstants;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,22 +27,17 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 @Module
 public class NetModule {
-    private String mBaseUrl;
-
-    public NetModule(String baseUrl){
-        this.mBaseUrl = baseUrl;
-    }
-
     @Provides
     @Singleton
-    Cache provideHttpCache(Application application){
+    Cache provideHttpCache(Application application) {
         int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(application.getCacheDir(),cacheSize);
+        Cache cache = new Cache(application.getCacheDir(), cacheSize);
         return cache;
     }
+
     @Provides
     @Singleton
-    Gson provideGson(){
+    Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gsonBuilder.create();
@@ -48,14 +45,14 @@ public class NetModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkhttpClient(Cache cache){
+    OkHttpClient provideOkhttpClient(Cache cache) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         client.cache(cache);
         client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60 , TimeUnit.SECONDS);
+        client.writeTimeout(60, TimeUnit.SECONDS);
         client.connectTimeout(60, TimeUnit.SECONDS);
         client.addInterceptor(logging);
         /*client.addInterceptor(new Interceptor() {
@@ -72,12 +69,12 @@ public class NetModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient){
+    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient, @Named("baseUrl") String baseUrl) {
         return new Retrofit.Builder()
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(mBaseUrl)
+                .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .build();
     }

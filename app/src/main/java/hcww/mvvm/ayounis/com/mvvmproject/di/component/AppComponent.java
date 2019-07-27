@@ -1,7 +1,11 @@
 package hcww.mvvm.ayounis.com.mvvmproject.di.component;
 
+import android.app.Application;
+
+import javax.inject.Named;
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
@@ -17,5 +21,16 @@ public interface AppComponent {
 
     void inject(MvvmApp app);
 
-    Retrofit getRetrofit();
+    @Component.Builder
+    interface Builder {
+
+        @BindsInstance
+        Builder application(Application application);
+
+        @BindsInstance
+        Builder baseUrl(@Named("baseUrl") String baseUrl);
+
+
+        AppComponent build();
+    }
 }

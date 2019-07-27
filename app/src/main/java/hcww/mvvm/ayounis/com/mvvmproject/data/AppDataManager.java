@@ -11,7 +11,6 @@ import hcww.mvvm.ayounis.com.mvvmproject.data.local.db.DbHelper;
 import hcww.mvvm.ayounis.com.mvvmproject.data.model.Articles;
 import hcww.mvvm.ayounis.com.mvvmproject.data.model.HomeData;
 import hcww.mvvm.ayounis.com.mvvmproject.data.remote.ApiHelper;
-import hcww.mvvm.ayounis.com.mvvmproject.di.ApplicationContext;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
@@ -20,22 +19,19 @@ import io.reactivex.Single;
 public class AppDataManager implements DataManager {
     private static final String TAG = "AppDataManager";
 
-    private final Context mContext;
     private final ApiHelper mApiHelper;
     private final DbHelper mDbHelper;
 
     @Inject
-    public AppDataManager(@ApplicationContext Context context, ApiHelper apiHelper, DbHelper DbHelper){
-        mContext = context;
+    public AppDataManager(ApiHelper apiHelper, DbHelper DbHelper) {
         mApiHelper = apiHelper;
         mDbHelper = DbHelper;
     }
 
 
-
     @Override
     public Single<HomeData> getHomeData(String apiKey, String query, String groupBy, int page, String source, String language) {
-        return mApiHelper.getHomeData(apiKey,query,groupBy,page,source,language);
+        return mApiHelper.getHomeData(apiKey, query, groupBy, page, source, language);
     }
 
     @Override

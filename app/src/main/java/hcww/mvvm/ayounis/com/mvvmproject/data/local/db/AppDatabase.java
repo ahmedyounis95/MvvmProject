@@ -10,7 +10,7 @@ import hcww.mvvm.ayounis.com.mvvmproject.di.DatabaseInfo;
 /**
  * Created by Ahmed Younis on 7/10/2019.
  */
-@Database(entities = Articles.class, version = 1)
+@Database(entities = Articles.class, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract NewsDao NewsDao();
 }

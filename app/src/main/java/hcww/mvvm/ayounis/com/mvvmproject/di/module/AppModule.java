@@ -16,7 +16,6 @@ import hcww.mvvm.ayounis.com.mvvmproject.data.local.db.AppDbHelper;
 import hcww.mvvm.ayounis.com.mvvmproject.data.local.db.DbHelper;
 import hcww.mvvm.ayounis.com.mvvmproject.data.remote.ApiHelper;
 import hcww.mvvm.ayounis.com.mvvmproject.data.remote.AppApiHelper;
-import hcww.mvvm.ayounis.com.mvvmproject.di.ApplicationContext;
 import hcww.mvvm.ayounis.com.mvvmproject.di.DatabaseInfo;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.AppConstants;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.rx.AppSchedulerProvider;
@@ -25,22 +24,23 @@ import hcww.mvvm.ayounis.com.mvvmproject.utils.rx.SchedulerProvider;
 @Module
 public class AppModule {
 
-    private final Application mApplication;
+//    private final Application mApplication;
 
-    public AppModule(Application mApplication) {
-        this.mApplication = mApplication;
-    }
+//    public AppModule(Application mApplication) {
+//        this.mApplication = mApplication;
+//    }
 
 
+//    @Provides
+//    @ApplicationContext
+//    Context provideContext() {
+//        return mApplication;
+//    }
+//
     @Provides
-    @ApplicationContext
-    Context provideContext() {
-        return mApplication;
-    }
-
-    @Provides
-    Application provideApplication() {
-        return mApplication;
+    @Singleton
+    Context provideContext(Application application) {
+        return application;
     }
 
     @Provides
@@ -51,7 +51,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    AppDatabase provideAppDatabase(@DatabaseInfo String dbName, @ApplicationContext Context context) {
+    AppDatabase provideAppDatabase(@DatabaseInfo String dbName,  Context context) {
         return Room.databaseBuilder(context, AppDatabase.class, dbName).fallbackToDestructiveMigration()
                 .build();
     }

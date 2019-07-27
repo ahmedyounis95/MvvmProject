@@ -8,11 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import hcww.mvvm.ayounis.com.mvvmproject.utils.AppConstants;
 
 
-@Entity(tableName = AppConstants.DB_NAME)
+@Entity(tableName = AppConstants.DB_NAME,indices = @Index(value = {"url"}, unique = true))
 
 public class Articles {
     @PrimaryKey(autoGenerate =  true)
