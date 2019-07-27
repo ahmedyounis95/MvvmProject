@@ -8,7 +8,7 @@ public final class AppConstants {
 
     public static final int API_STATUS_CODE_LOCAL_ERROR = 0;
 
-    public static final String DB_NAME = "ayounis_mvvm.db";
+    public static final String DB_NAME = "news.db";
 
     public static final long NULL_INDEX = -1L;
 

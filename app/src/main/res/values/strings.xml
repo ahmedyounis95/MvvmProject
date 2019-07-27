@@ -6,4 +6,5 @@
     <string name="retry">Retry</string>
     <string name="news">News</string>
     <string name="favorites">Favorites</string>
+    <string name="favorite_string">Mark as favorite</string>
 </resources>

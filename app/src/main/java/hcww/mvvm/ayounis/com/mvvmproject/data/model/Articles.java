@@ -17,7 +17,7 @@ import hcww.mvvm.ayounis.com.mvvmproject.utils.AppConstants;
 public class Articles {
     @PrimaryKey(autoGenerate =  true)
     @NonNull
-    int id;
+    private int id;
     @SerializedName("source")
     @Ignore
     private Source source;

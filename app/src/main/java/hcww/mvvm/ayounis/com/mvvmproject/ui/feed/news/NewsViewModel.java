@@ -29,12 +29,14 @@ public class NewsViewModel extends BaseViewModel<NewsNavigator> {
 
     public void fetchRepos() {
         setIsLoading(true);
+
         getCompositeDisposable().add(getDataManager()
                 .getHomeData("dcf37b3045e542df970986c1114eb3ea", "news", "day", 1, "USA Today", "en")
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(homeData -> {
                     if (homeData != null && homeData.getArticles()!= null) {
+
                         newsItemsLiveData.setValue(homeData.getArticles());
                     }
                     setIsLoading(false);
