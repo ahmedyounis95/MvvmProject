@@ -29,7 +29,7 @@ public abstract class BaseDialog extends DialogFragment {
             BaseActivity mActivity = (BaseActivity) context;
             this.mActivity = mActivity;
             mActivity.onFragmentAttached();
-     
+
         }
     }
 

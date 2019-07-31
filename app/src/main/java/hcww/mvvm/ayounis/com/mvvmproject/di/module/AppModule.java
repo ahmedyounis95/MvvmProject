@@ -24,19 +24,6 @@ import hcww.mvvm.ayounis.com.mvvmproject.utils.rx.SchedulerProvider;
 @Module
 public class AppModule {
 
-//    private final Application mApplication;
-
-//    public AppModule(Application mApplication) {
-//        this.mApplication = mApplication;
-//    }
-
-
-//    @Provides
-//    @ApplicationContext
-//    Context provideContext() {
-//        return mApplication;
-//    }
-//
     @Provides
     @Singleton
     Context provideContext(Application application) {
